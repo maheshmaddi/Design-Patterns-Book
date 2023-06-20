@@ -1,7 +1,7 @@
-import java.util.List;
-import java.util.ArrayList;
-
 // Pizza.java
+
+import java.util.List;
+
 public class Pizza {
     private final String size;
     private final String crust;
@@ -56,30 +56,17 @@ public class Pizza {
     }
 }
 
-// PizzaStore.java
-public class PizzaStore {
-    public Pizza orderPizza(Pizza.PizzaBuilder builder) {
-        Pizza pizza = builder.build();
-        System.out.println("Preparing " + pizza);
-        // You can add more pizza preparation and cooking steps here.
-        System.out.println("Pizza is ready!");
-        return pizza;
-    }
-}
-
 // Main.java
 public class Main {
     public static void main(String[] args) {
-        PizzaStore store = new PizzaStore();
-
-        Pizza.PizzaBuilder builder = new Pizza.PizzaBuilder("Large")
+        Pizza pizza = new Pizza.PizzaBuilder("Large")
                 .crust("Thin")
                 .cheese("Mozzarella")
                 .addTopping("Pepperoni")
                 .addTopping("Mushrooms")
-                .addTopping("Onions");
+                .addTopping("Onions")
+                .build();
 
-        Pizza pizza = store.orderPizza(builder);
-        System.out.println("You've received your pizza: " + pizza);
+        System.out.println(pizza);
     }
 }
