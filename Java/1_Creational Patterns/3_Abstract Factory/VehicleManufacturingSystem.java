@@ -1,55 +1,87 @@
-// Additional Concrete Products
-class ElectricTruck implements Vehicle {
+// Abstract Product
+interface Vehicle {
+    void assemble();
+}
+
+// Concrete Products
+class ElectricCar implements Vehicle {
     @Override
     public void assemble() {
-        System.out.println("Assembling electric truck...");
+        System.out.println("Assembling electric car...");
     }
 }
 
-class GasolineTruck implements Vehicle {
+class GasolineCar implements Vehicle {
     @Override
     public void assemble() {
-        System.out.println("Assembling gasoline truck...");
+        System.out.println("Assembling gasoline car...");
     }
 }
 
-// Additional Concrete Factories
-class ElectricTruckFactory implements VehicleFactory {
+class ElectricMotorcycle implements Vehicle {
+    @Override
+    public void assemble() {
+        System.out.println("Assembling electric motorcycle...");
+    }
+}
+
+class GasolineMotorcycle implements Vehicle {
+    @Override
+    public void assemble() {
+        System.out.println("Assembling gasoline motorcycle...");
+    }
+}
+
+// Abstract Factory
+interface VehicleFactory {
+    Vehicle createVehicle();
+}
+
+// Concrete Factories
+class ElectricCarFactory implements VehicleFactory {
     @Override
     public Vehicle createVehicle() {
-        return new ElectricTruck();
+        return new ElectricCar();
     }
 }
 
-class GasolineTruckFactory implements VehicleFactory {
+class GasolineCarFactory implements VehicleFactory {
     @Override
     public Vehicle createVehicle() {
-        return new GasolineTruck();
+        return new GasolineCar();
     }
 }
 
-// Updated Client
+class ElectricMotorcycleFactory implements VehicleFactory {
+    @Override
+    public Vehicle createVehicle() {
+        return new ElectricMotorcycle();
+    }
+}
+
+class GasolineMotorcycleFactory implements VehicleFactory {
+    @Override
+    public Vehicle createVehicle() {
+        return new GasolineMotorcycle();
+    }
+}
+
+// Client
 public class VehicleManufacturingSystem {
     public static void main(String[] args) {
         VehicleFactory electricCarFactory = new ElectricCarFactory();
         VehicleFactory gasolineCarFactory = new GasolineCarFactory();
         VehicleFactory electricMotorcycleFactory = new ElectricMotorcycleFactory();
         VehicleFactory gasolineMotorcycleFactory = new GasolineMotorcycleFactory();
-        VehicleFactory electricTruckFactory = new ElectricTruckFactory();
-        VehicleFactory gasolineTruckFactory = new GasolineTruckFactory();
 
         Vehicle electricCar = electricCarFactory.createVehicle();
         Vehicle gasolineCar = gasolineCarFactory.createVehicle();
         Vehicle electricMotorcycle = electricMotorcycleFactory.createVehicle();
         Vehicle gasolineMotorcycle = gasolineMotorcycleFactory.createVehicle();
-        Vehicle electricTruck = electricTruckFactory.createVehicle();
-        Vehicle gasolineTruck = gasolineTruckFactory.createVehicle();
 
         electricCar.assemble();
         gasolineCar.assemble();
         electricMotorcycle.assemble();
         gasolineMotorcycle.assemble();
-        electricTruck.assemble();
-        gasolineTruck.assemble();
     }
 }
